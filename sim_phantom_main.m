@@ -101,6 +101,7 @@ volshow(permute(sensor.mask, [2,1,3]),Parent=viewer, Colormap=parula, Alphamap=[
 %% Shear wave simulation
 
 display_mask = source.s_mask;
+DATA_CAST       = 'gpuArray-single';     % set to 'single' or 'gpuArray-single' to speed up computations
 input_args_shear = {'DisplayMask', display_mask, 'PMLInside', false, 'PlotPML', false, 'DataCast', DATA_CAST};
 % Run the simulation TODO
 sensor_data_shear = pstdElastic3D(kgrid, medium, source, sensor, input_args_shear{:});

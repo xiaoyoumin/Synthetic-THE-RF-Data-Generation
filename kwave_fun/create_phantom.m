@@ -48,7 +48,7 @@ cr2 = shear_params.cr2;
 
 
 % set shear wave simulation grid
-dx_shear = 1/source_freq/10; % use the lowest possible shear wave speed 1m/s to calculate wavelength
+dx_shear = 1/source_freq/5; % use the lowest possible shear wave speed 1m/s to calculate wavelength
 Nz_shear = round(zrange/dx_shear); % [grid points]
 Nx_shear = round(xrange/dx_shear); % [grid points]
 Ny_shear = round(yrange/dx_shear); % [grid points]
