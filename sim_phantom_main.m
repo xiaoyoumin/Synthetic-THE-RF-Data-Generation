@@ -16,7 +16,13 @@
 
 clear; clc; close all;
 
+% Add dependencies
+addpath('/fp/homes01/u01/ec-chaoranh/Documents/MATLAB/ustb')
+addpath('/fp/homes01/u01/ec-chaoranh/Documents/MATLAB/field_II/')
 
+addpath("FIELD_fun")
+addpath("kwave_fun")
+addpath("utils")
 %% ---------------- Parameters for shear-wave simulation ------------------
 
 % Define phantom geometry
