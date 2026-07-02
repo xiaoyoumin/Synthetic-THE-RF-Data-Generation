@@ -1,65 +1,56 @@
 function [TF, TF_rev] = coor_transformation(prb_center, prb_theta)
-% function [TF, TF_rev] = coor_transformation(prb_center, prb_theta)
+%COOR_TRANSFORMATION Build probe-to-mesh coordinate transforms.
 %
-% Define the coordinate transformation matrix, between probe coordinate and
-% mesh coordinate.
+% The ultrasound scatterers and image grid are first defined in probe
+% coordinates. This function defines the rigid transform that places the
+% probe coordinate system inside the shear-wave simulation mesh, together
+% with the inverse transform used before Field II RF simulation.
 %
 % Inputs:
-%   prb_center : position of the probe on the mesh, (x, y, z), [mm]
-%   prb_theta : rotation of the probe, (yaw, roll), [rad]. Pitch rotation is not
-%               allowed. Yaw: Rotate angle around vertical axis; roll:
-%               rotation angle around long axis of the probe.
+%   prb_center : Probe origin in mesh coordinates [x, y, z] [m].
+%   prb_theta  : Probe rotation [yaw, roll] [rad]. Pitch rotation is not
+%                used. Yaw rotates around the vertical axis and roll rotates
+%                around the long axis of the probe.
 %
 % Outputs:
-%   TF : transformation matrix from probe coordinate to mesh coordinate.
-%   TF_rev : transformation matrix from mesh coordinate to probe
-%            coordinate.
-%
-% =========================================================================
-
-
+%   TF     : 4-by-4 homogeneous transform from probe coordinates to mesh
+%            coordinates.
+%   TF_rev : 4-by-4 homogeneous transform from mesh coordinates to probe
+%            coordinates.
 
 prb_theta_x = prb_theta(1);
 prb_theta_z = prb_theta(2);
 
-
-% Define Transform matrix from probe coordinate to mesh coordinate
-
-% Yaw rotation matrix
 R_yaw = [cos(prb_theta_x), -sin(prb_theta_x), 0, 0;
          sin(prb_theta_x), cos(prb_theta_x), 0, 0;
          0, 0, 1, 0;
          0, 0, 0, 1];
 
-% Roll rotation matrix
 R_roll = [1, 0, 0, 0;
           0, cos(prb_theta_z), -sin(prb_theta_z), 0;
           0, sin(prb_theta_z), cos(prb_theta_z), 0;
-          0,0,0,1];
+          0, 0, 0, 1];
 
-% Translation matrix
-T = [1,0,0,prb_center(1);
-    0,1,0,prb_center(2);
-    0,0,1,prb_center(3);
-    0,0,0,1];
+T = [1, 0, 0, prb_center(1);
+     0, 1, 0, prb_center(2);
+     0, 0, 1, prb_center(3);
+     0, 0, 0, 1];
 
-TF = T*R_yaw*R_roll;%*[scatterers, ones(size(xxp_speckle))]';
+TF = T*R_yaw*R_roll;
 
-% Reverse transform matrix from mesh to probe
-
-T_re = [1,0,0,-prb_center(1);
-    0,1,0,-prb_center(2);
-    0,0,1,-prb_center(3);
-    0,0,0,1];
+T_re = [1, 0, 0, -prb_center(1);
+        0, 1, 0, -prb_center(2);
+        0, 0, 1, -prb_center(3);
+        0, 0, 0, 1];
 
 R_roll_re = [1, 0, 0, 0;
-          0, cos(-prb_theta_z), -sin(-prb_theta_z), 0;
-          0, sin(-prb_theta_z), cos(-prb_theta_z), 0;
-          0,0,0,1];
+             0, cos(-prb_theta_z), -sin(-prb_theta_z), 0;
+             0, sin(-prb_theta_z), cos(-prb_theta_z), 0;
+             0, 0, 0, 1];
 
 R_yaw_re = [cos(-prb_theta_x), -sin(-prb_theta_x), 0, 0;
-         sin(-prb_theta_x), cos(-prb_theta_x), 0, 0;
-         0, 0, 1, 0;
-         0, 0, 0, 1];
+            sin(-prb_theta_x), cos(-prb_theta_x), 0, 0;
+            0, 0, 1, 0;
+            0, 0, 0, 1];
 
-TF_rev = R_roll_re*R_yaw_re*T_re;%*sca_mesh;
+TF_rev = R_roll_re*R_yaw_re*T_re;
