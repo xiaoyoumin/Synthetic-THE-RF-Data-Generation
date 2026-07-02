@@ -1,5 +1,7 @@
 # Synthetic Ultrasound RF Channel Data for Time-Harmonic Elastography
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21142261.svg)](https://doi.org/10.5281/zenodo.21142261)
+
 This repository contains MATLAB code for generating synthetic ultrasound RF
 channel data for ultrasound time-harmonic elastography (THE). The framework
 links numerically simulated shear-wave motion to pulse-echo ultrasound
