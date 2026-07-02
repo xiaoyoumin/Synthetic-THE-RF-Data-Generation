@@ -30,22 +30,6 @@ The simulation pipeline follows three main steps:
 Optional sections in the main scripts compute ground-truth motion fields on the
 ultrasound image grid and beamform the RF channel data with USTB.
 
-## Repository Structure
-
-```text
-.
-|-- sim_phantom_main.m       # Phantom case-study entry point
-|-- sim_liver_main.m         # Liver case-study entry point
-|-- Liver-sim-data.h5        # Liver FEM mesh and simulated motion data
-|-- kwave_fun/               # Phantom/k-Wave helper functions
-|-- FEM_fun/                 # Liver/FEM helper functions
-|-- FIELD_fun/               # Field II RF simulation helper functions
-|-- utils/                   # Shared coordinate, scatterer and motion utilities
-|-- old_code/                # Legacy reference scripts
-|-- LICENSE
-`-- README.md
-```
-
 ## Requirements
 
 The code is written for MATLAB. It has been checked in this workspace with
