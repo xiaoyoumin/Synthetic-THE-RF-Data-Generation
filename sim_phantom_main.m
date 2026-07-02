@@ -208,6 +208,6 @@ b_data.plot([], [], 40);
 
 %% (Optional) Save useful variables
 
-SAVE_DIR = strcat('/fp/projects01/ec35/homes/ec-chaoranh/data/test_fomal_code.mat');
+SAVE_DIR = strcat('/path/to/data.mat');
 save(SAVE_DIR, "RF", "channel_data", "disp_gt", "motion", "vec_T", ...
     "prb_center", "prb_theta", "scene_depth", '-v7.3')

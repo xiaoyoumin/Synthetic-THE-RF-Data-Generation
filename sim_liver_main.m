@@ -168,6 +168,6 @@ b_data.plot();
 
 %% (Optional) Save useful variables
 
-SAVE_DIR = strcat('/fp/projects01/ec35/homes/ec-chaoranh/data/fem_liver_sim_dw_7_', num2str(prf), 'prf.mat');
+SAVE_DIR = strcat('/path/to/data.mat');
 save(SAVE_DIR, "RF", "disp_gt","channel_data", "motion", "vec_T", ...
     "prb_center", "prb_theta", "scene_depth", '-v7.3')
