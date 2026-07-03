@@ -200,6 +200,7 @@ das.transmit_apodization.f_number = F_number;
 
 das.receive_apodization.window = uff.window.tukey25;
 das.receive_apodization.f_number = F_number;
+das.code = "matlab";
 
 b_data = das.go();
 

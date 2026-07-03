@@ -28,7 +28,8 @@ The simulation pipeline follows three main steps:
 3. Use Field II to generate synthetic pulse-echo RF channel data.
 
 Optional sections in the main scripts compute ground-truth motion fields on the
-ultrasound image grid and beamform the RF channel data with USTB.
+ultrasound image grid, beamform the RF channel data with USTB and estimate
+inter-frame displacement with USTB autocorrelation.
 
 ## Requirements
 
@@ -60,10 +61,6 @@ addpath('/path/to/ustb')
 4. Edit the output path `SAVE_DIR` near the end of each main script so that it
 points to a writable location on your machine.
 
-The liver case expects `Liver-sim-data.h5` to be available in the repository
-root. The included file stores the tetrahedral mesh, cell labels and simulated
-FEM displacement data used by `sim_liver_main.m`.
-
 ## Running the Examples
 
 ### Phantom Model
@@ -89,6 +86,7 @@ The main scripts save variables such as:
 - `RF`: simulated RF channel data from Field II;
 - `disp_gt`: ground-truth motion projected onto the ultrasound image direction;
 - `channel_data`: USTB channel-data object that contain all the required parameters for beamforming;
+- `displacement_estimation_autocorr`: USTB beamformed-data object containing displacement estimated by autocorrelation;
 
 
 The RF array is arranged as:

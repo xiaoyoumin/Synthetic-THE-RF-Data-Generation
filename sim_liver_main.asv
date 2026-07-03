@@ -161,12 +161,6 @@ mid.dimension = dimension.both;
 mid.channel_data = channel_data;
 mid.scan = scan;
 
-F_number = 1.7;
-das.transmit_apodization.window = uff.window.tukey25;
-das.transmit_apodization.f_number = F_number;
-das.receive_apodization.window = uff.window.tukey25;
-das.receive_apodization.f_number = F_number;
-
 b_data = mid.go();
 
 b_data.plot();
