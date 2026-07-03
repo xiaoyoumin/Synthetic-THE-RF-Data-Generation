@@ -22,6 +22,10 @@ function [kgrid, medium] = create_phantom(shear_params)
 %       cr2          : Radius of the second spherical inclusion [m].
 %       alpha_coeff_compression : Optional compression-wave attenuation.
 %       alpha_coeff_shear       : Optional shear-wave attenuation.
+%       reflect                 : Optional flag to add high-density
+%                                 reflecting boundaries.
+%       reflect_thickness       : Optional reflecting-boundary thickness in
+%                                 grid points. Defaults to 5.
 %
 % Outputs:
 %   kgrid  : kWaveGrid object defining the computational grid and time axis.
@@ -68,6 +72,29 @@ if isfield(shear_params, 'alpha_coeff_compression')
 end
 if isfield(shear_params, 'alpha_coeff_shear')
     medium.alpha_coeff_shear = shear_params.alpha_coeff_shear;
+end
+
+if isfield(shear_params, 'reflect') && shear_params.reflect
+    reflect_thickness = 5;
+    if isfield(shear_params, 'reflect_thickness')
+        reflect_thickness = shear_params.reflect_thickness;
+    end
+    reflect_thickness = max(0, round(reflect_thickness));
+
+    nx_shell = min(reflect_thickness, floor((Nx_shear-1)/2));
+    ny_shell = min(reflect_thickness, max(Ny_shear-1, 0));
+    nz_shell = min(reflect_thickness, max(Nz_shear-1, 0));
+
+    if nx_shell > 0
+        medium.density(1:nx_shell,:,:) = 7850*10;
+        medium.density(end-nx_shell+1:end,:,:) = 7850*10;
+    end
+    if ny_shell > 0
+        medium.density(:,end-ny_shell+1:end,:) = 7850*10;
+    end
+    if nz_shell > 0
+        medium.density(:,:,end-nz_shell+1:end) = 7850*10;
+    end
 end
 
 t_end_shear = 0.1;
