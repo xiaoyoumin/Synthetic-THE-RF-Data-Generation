@@ -40,7 +40,7 @@ Required external toolboxes/software:
 
 - [Field II](https://field-ii.dk/) for RF channel-data simulation.
 - [k-Wave](http://www.k-wave.org/) for the phantom shear-wave simulation.
-- [USTB](https://ultrasoundtoolbox.com/) for the optional beamforming sections.
+- [USTB](https://ultrasoundtoolbox.com/) for the optional beamforming and displacement estimation sections.
 
 If USTB is not installed, comment out the optional beamforming section in the
 main script after the RF data have been generated.
