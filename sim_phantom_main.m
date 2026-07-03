@@ -121,7 +121,7 @@ t_start = t_start + 50 * kgrid.dt;
 %% Create initial scatterer map
 
 sca_per_cell = 50;
-scatterers = create_scataterers(prb, scene_depth, pulse_duration, lambda, sca_per_cell);
+scatterers = create_scatterers(prb, scene_depth, pulse_duration, lambda, sca_per_cell);
 
 %% Compute time-varying scatterer positions
 

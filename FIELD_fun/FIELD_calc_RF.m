@@ -21,7 +21,8 @@ function RF = FIELD_calc_RF(prb, sca_mesh, amp, TF_rev, tx_sequence, scene_depth
 %                      arranged as [num_transmits, 3] [m].
 %   scene_depth      : Axial imaging depth used to crop RF data [m].
 %   fs               : RF sampling frequency [Hz].
-%   attenfreq        : Acoustic attenuation [dB/MHz/cm].
+%   attenfreq        : Acoustic attenuation [dB/MHz/cm]. Use 0 or [] to
+%                      disable attenuation.
 %   f0               : Transducer center frequency [Hz].
 %   c0               : Speed of sound [m/s].
 %   impulse_response : Probe impulse response waveform.

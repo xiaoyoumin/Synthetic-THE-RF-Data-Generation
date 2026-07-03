@@ -1,5 +1,5 @@
-function scatterers = create_scataterers(prb, scene_depth, pulse_duration, lambda, sca_per_cell)
-%CREATE_SCATATERERS Generate the initial acoustic scatterer distribution.
+function scatterers = create_scatterers(prb, scene_depth, pulse_duration, lambda, sca_per_cell)
+%CREATE_SCATTERERS Generate the initial acoustic scatterer distribution.
 %
 % Scatterers are randomly distributed over the ultrasound imaging region to
 % provide realistic speckle statistics for the mesh-free Field II

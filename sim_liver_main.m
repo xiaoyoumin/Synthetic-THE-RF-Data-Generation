@@ -61,7 +61,7 @@ prf                     = 3000;        % Pulse repetition frequency [Hz]
 fs = 100e6;    % Sampling frequency [Hz]
 dt = 1/fs;     % Sampling step [s]
 
-attenfreq = 0.55;  % Attenuation [dB/MHz/cm]
+attenfreq = 0;  % Old liver Field II simulation did not use attenuation.
 
 scene_depth = 120e-3;
 
@@ -73,7 +73,7 @@ t_start = 0;
 %% Create initial scatterer map
 
 sca_per_cell = 10;
-scatterers = create_scataterers(prb, scene_depth, pulse_duration, lambda, sca_per_cell);
+scatterers = create_scatterers(prb, scene_depth, pulse_duration, lambda, sca_per_cell);
 
 %% Coordinate transfer matrix
 
