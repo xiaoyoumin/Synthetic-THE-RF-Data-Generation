@@ -104,7 +104,8 @@ The RF array is arranged as:
 - A large number of scatterers is required to establish fully developed
   ultrasound speckle statistics. Consequently, the Field II simulation is also
   computationally expensive; in the current examples, one RF frame can take
-  roughly half an hour to compute, depending on hardware and scatterer count.
+  roughly half an hour to compute for phantom model and roughly six hours for liver model due to the the large convex-probe scene, depending on hardware and scatterer count.
+- Enabling frequency-dependent attenuation substantially increases the per-frame Field II simulation time.
 - Field II simulation is run inside `parfor` in `FIELD_calc_RF.m`.
 
 ## Citation
